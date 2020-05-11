@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Student Learning Space</title>
+  <style>
+    .rich-text-editor {
+      border: 1px solid #ddd;
+      max-height: 160px;
+      min-height: 160px;
+      overflow: auto;
+      padding: 0 16px;
+    }
+    .rich-text-editor::before {
+      top: 16px !important;
+      left: 16px !important;
+    }
+    .rich-text-editor p {
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+    .rich-text-toolbar {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body style="padding: 1.5rem 2rem; margin: auto; max-width: 800px;">
+  <section>
+    <h1 style="font-family: sans-serif;">Question</h1>
+    <p style="font-family: sans-serif;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
+    <div class="rich-text-editor"></div>
+  </section>
+  <br/>
+  <section>
+    <h1 style="font-family: sans-serif;">Question</h1>
+    <p style="font-family: sans-serif;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
+    <div class="rich-text-editor"></div>
+  </section>
+  <br/>
+  <section>
+    <h1 style="font-family: sans-serif;">Question</h1>
+    <p style="font-family: sans-serif;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
+    <div class="rich-text-editor"></div>
+  </section>
+  <div id="toolbar" class="rich-text-toolbar"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.2.2/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+    tinymce.init({
+      selector: '.rich-text-editor',
+      plugins: ['autolink noneditable paste textcolor advlist lists table image link media'],
+      menubar: false,
+      toolbar_sticky: true,
+      /*fixed_toolbar_container: '#toolbar',*/
+      toolbar_mode: 'scrolling',
+      toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | fontselect formatselect | numlist bullist | table image link media | pastetext',
+      placeholder: 'Enter your answer here...'
+    });
+  </script>
+</body>
+</html>
