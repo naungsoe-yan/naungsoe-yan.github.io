@@ -2,36 +2,12 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Student Learning Space</title>
   <style>
-    body {
-      overflow: hidden;
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      height: calc(var(--vh, 1vh) * 100);
-      width: 100vw;
-      width: calc(var(--vw, 1vw) * 100);
-    }
-    .rich-text-toolbar {
-      position: absolute;
-      top: calc(100vh - 40px);
-      top: calc((var(--vh, 1vh) * 100) - 40px);
-      left: 0;
-      right: 0;
-    }
-    .rich-text-content {
-      height: 100vh;
-      height: calc(var(--vh, 1vh) * 100);
-      overflow: auto;
-      padding: 1.5rem;
-    }
     .rich-text-editor {
       border: 1px solid #ddd;
-      max-height: 160px;
       min-height: 160px;
-      overflow: auto;
       padding: 0 16px;
     }
     .rich-text-editor::before {
@@ -42,41 +18,38 @@
       margin-top: 16px;
       margin-bottom: 16px;
     }
+    .rich-text-toolbar {
+      position: -webkit-sticky;
+      position: sticky;
+      bottom: 0;
+    }
   </style>
 </head>
-<body>
-  <div class="rich-text-content">
-    <section>
-      <h1 style="font-family: sans-serif;">Question</h1>
-      <p style="font-family: sans-serif;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
-      <div class="rich-text-editor"></div>
-    </section>
-    <br/>
-    <section>
-      <h1 style="font-family: sans-serif;">Question</h1>
-      <p style="font-family: sans-serif;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
-      <div class="rich-text-editor"></div>
-    </section>
-    <br/>
-    <section>
-      <h1 style="font-family: sans-serif;">Question</h1>
-      <p style="font-family: sans-serif;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
-      <div class="rich-text-editor"></div>
-    </section>
-  </div>
+<body style="padding: 1.5rem 2rem; margin: auto; max-width: 800px;">
+  <section>
+    <h1 style="font-family: sans-serif;">Question</h1>
+    <p style="font-family: sans-serif;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
+    <div class="rich-text-editor"></div>
+  </section>
+  <br/>
+  <section>
+    <h1 style="font-family: sans-serif;">Question</h1>
+    <p style="font-family: sans-serif;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
+    <div class="rich-text-editor"></div>
+  </section>
+  <br/>
+  <section>
+    <h1 style="font-family: sans-serif;">Question</h1>
+    <p style="font-family: sans-serif;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
+    <div class="rich-text-editor"></div>
+  </section>
   <div id="toolbar" class="rich-text-toolbar"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.2.2/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
-    const vh = (window.innerHeight * 0.01);
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-    const vw = (window.innerWidth * 0.01);
-    document.documentElement.style.setProperty('--vw', `${vw}px`);
-
     tinymce.init({
       selector: '.rich-text-editor',
       plugins: ['autolink noneditable paste textcolor advlist lists table image link media'],
       menubar: false,
-      toolbar_sticky: true,
       inline: true,
       fixed_toolbar_container: '#toolbar',
       toolbar_mode: 'scrolling',
