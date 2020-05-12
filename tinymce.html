@@ -21,8 +21,8 @@
       margin-bottom: 16px;
     }
     .rich-text-toolbar {
-      position: fixed;
-      bottom: 0;
+      position: absolute;
+      top: calc(100vh - 40px);
       right: 0;
       left: 0;
     }
@@ -59,6 +59,10 @@
       toolbar_mode: 'scrolling',
       toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | fontselect formatselect | numlist bullist | table image link media | pastetext',
       placeholder: 'Enter your answer here...'
+    });
+    window.addEventListener('scroll', function(event) {
+       var top = window.innerHeight + (window.pageYOffset - 40);
+       document.querySelector("#toolbar").style.top = top + 'px';
     });
   </script>
 </body>
