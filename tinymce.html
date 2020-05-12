@@ -48,6 +48,12 @@
   <div id="toolbar" class="rich-text-toolbar"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.2.2/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
+    function updateToolbarPosition() {
+      var top = window.innerHeight + (window.pageYOffset - 40);
+      document.querySelector("#toolbar").style.top = top + 'px';
+    }
+    window.addEventListener('scroll', updateToolbarPosition);
+
     tinymce.init({
       selector: '.rich-text-editor',
       plugins: ['autolink noneditable paste textcolor advlist lists table image link media'],
@@ -57,11 +63,10 @@
       fixed_toolbar_container: '#toolbar',
       toolbar_mode: 'scrolling',
       toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | fontselect formatselect | numlist bullist | table image link media | pastetext',
-      placeholder: 'Enter your answer here...'
-    });
-    window.addEventListener('scroll', function(event) {
-       var top = window.innerHeight + (window.pageYOffset - 40);
-       document.querySelector("#toolbar").style.top = top + 'px';
+      placeholder: 'Enter your answer here...',
+      setup: function(editor) {
+        editor.on('focus', updateToolbarPosition);
+      }
     });
   </script>
 </body>
