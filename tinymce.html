@@ -20,7 +20,6 @@
     }
     .rich-text-toolbar {
       position: fixed;
-      position: device-fixed;
       bottom: 0;
       right: 0;
       left: 0;
@@ -56,7 +55,10 @@
       fixed_toolbar_container: '#toolbar',
       toolbar_mode: 'scrolling',
       toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | fontselect formatselect | numlist bullist | table image link media | pastetext',
-      placeholder: 'Enter your answer here...'
+      placeholder: 'Enter your answer here...',
+      mobile: {
+        theme: 'mobile'
+      }
     });
   </script>
 </body>
