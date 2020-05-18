@@ -30,6 +30,6 @@ export default {
 <style>
 .bx--toolbar {
   background-color: #eee;
-  z-index: 6000;
+  z-index: 1000;
 }
 </style>
