@@ -1,8 +1,8 @@
 <template>
   <cv-toolbar>
-    <cv-icon-button :icon="iconTextScale" />
-    <cv-icon-button :icon="iconTextKerning" />
-    <cv-icon-button :icon="iconTextHighlight" />
+    <cv-icon-button :icon="iconTextScale" @click="handleToggle" />
+    <cv-icon-button :icon="iconTextKerning" @click="handleToggle" />
+    <cv-icon-button :icon="iconTextHighlight" @click="handleToggle" />
   </cv-toolbar>
 </template>
 
@@ -23,11 +23,16 @@ export default {
     iconTextHighlight() {
       return TextHighlight20;
     }
+  },
+  methods: {
+    handleToggle() {
+      this.$emit("toggle");
+    }
   }
 }
 </script>
 
-<style>
+<style scoped>
 .bx--toolbar {
   background-color: #eee;
   z-index: 1000;

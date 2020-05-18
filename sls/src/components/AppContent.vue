@@ -21,7 +21,8 @@
       <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
       <p>Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
     </section>
-    <annotation-toolbar ref="toolbar" />
+    <annotation-toolbar ref="toolbar" @toggle="handleToggle" />
+    <annotation-text-area ref="textarea" />
   </div>
 </template>
 
@@ -29,37 +30,63 @@
 import { createPopper } from '@popperjs/core';
 import PageToolbar from './PageToolbar.vue';
 import AnnotationToolbar from './AnnotationToolbar.vue';
+import AnnotationTextArea from './AnnotationTextArea.vue';
 
 export default {
   name: 'AppContent',
   components: {
     PageToolbar,
-    AnnotationToolbar
+    AnnotationToolbar,
+    AnnotationTextArea
   },
   data() {
     return {
-      popper: null
+      toolbarPopper: null,
+      textareaPopper: null
+    }
+  },
+  methods: {
+    handleToggle() {
+      const selection = document.getSelection();
+      const textarea = this.$refs.textarea.$el;
+      
+      textarea.style.display = '';
+      const reference = selection.anchorNode.parentElement;console.log(reference);
+      this.textareaPopper = createPopper(reference, textarea);
+
+      const range = selection.getRangeAt(0);
+      const newNode = document.createElement('span');
+      newNode.setAttribute('style', 'background-color: yellow');
+      range.surroundContents(newNode);
+      selection.removeAllRanges();
     }
   },
   mounted() {
     const toolbar = this.$refs.toolbar.$el;
+    const textarea = this.$refs.textarea.$el;
     toolbar.style.display = 'none';
     document.addEventListener('selectionchange', () => {
-      if (this.popper && this.popper.destroy) {
-        this.popper.destroy();
-        this.popper = null;
+      if (this.toolbarPopper && this.toolbarPopper.destroy) {
+        this.toolbarPopper.destroy();
+        this.toolbarPopper = null;
       }
       
       const selection = document.getSelection();
       if (selection.isCollapsed) {
         toolbar.style.display = 'none';
         return;
-      } else {
-        toolbar.style.display = '';
+      }
+
+      textarea.style.display = 'none';
+      toolbar.style.display = '';
+
+      if (this.textareaPopper && this.textareaPopper.destroy) {
+        this.textareaPopper.destroy();
+        this.textareaPopper = null;
       }
 
       const reference = selection.anchorNode.parentElement;
-      this.popper = createPopper(reference, toolbar);
+      this.toolbarPopper = createPopper(reference, toolbar);
     });
   }
 }
