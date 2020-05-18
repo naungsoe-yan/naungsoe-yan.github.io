@@ -3,8 +3,7 @@
     <cv-skip-to-content href="#main-content">
       Skip to content
     </cv-skip-to-content>
-    <cv-header-name href="javascript:void(0)" prefix="IBM">
-      [Platform]
+    <cv-header-name href="javascript:void(0)" prefix="Sticky header">
     </cv-header-name>
     <template slot="header-global">
       <cv-header-global-action

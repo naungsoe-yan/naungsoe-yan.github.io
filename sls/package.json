@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@carbon/vue": "^2.25.1",
+    "@popperjs/core": "^2.4.0",
     "core-js": "^3.6.4",
     "vue": "^2.6.11"
   },
