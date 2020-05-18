@@ -2,8 +2,8 @@
   <cv-toolbar>
     <cv-text-area ref="text" class="textarea" placeholder="click to see browser behaviour on mobile device" />
     <div class="action">
-      <cv-icon-button kind="ghost" :icon="iconClose" />
-      <cv-icon-button :icon="iconSave" />
+      <cv-icon-button kind="ghost" :icon="iconClose" @click="handleToggle" />
+      <cv-icon-button :icon="iconSave" @click="handleToggle" />
     </div>
   </cv-toolbar>
 </template>
@@ -20,6 +20,11 @@ export default {
     },
     iconSave() {
       return Save20;
+    }
+  },
+  methods: {
+    handleToggle() {
+      this.$emit("toggle");
     }
   }
 }
