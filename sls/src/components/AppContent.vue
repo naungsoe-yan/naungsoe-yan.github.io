@@ -23,7 +23,7 @@
     </section>
     <annotation-toolbar ref="toolbar" @toggle="handleToolbarToggle" />
     <annotation-text-area ref="textarea" @toggle="handleTextAreaToggle" />
-    <annotation-list ref="list" />
+    <annotation-list ref="list" @toggle="handleListToggle" />
   </div>
 </template>
 
@@ -45,17 +45,14 @@ export default {
   data() {
     return {
       toolbarPopper: null,
-      textareaPopper: null,
-      listPopper: null
+      textareaPopper: null
     }
   },
   methods: {
     handleToolbarToggle() {
       const toolbar = this.$refs.toolbar.$el;
       const textarea = this.$refs.textarea.$el;
-      const list = this.$refs.list.$el;
       toolbar.style.display = 'none';
-      list.style.display = 'none';
       textarea.style.display = '';
 
       const selection = document.getSelection();
@@ -75,6 +72,10 @@ export default {
       toolbar.style.display = 'none';
       textarea.style.display = 'none';
       list.style.display = '';
+    },
+    handleListToggle() {
+      const list = this.$refs.list.$el;
+      list.style.display = 'none';
     }
   },
   mounted() {
@@ -90,27 +91,14 @@ export default {
         this.toolbarPopper.destroy();
         this.toolbarPopper = null;
       }
-
-      if (this.listPopper && this.listPopper.destroy) {
-        this.listPopper.destroy();
-        this.listPopper = null;
-      }
       
       const selection = document.getSelection();
       if (selection.isCollapsed) {
-        const anchorNode = selection.anchorNode;
-        if (anchorNode && anchorNode.parentElement
-          && anchorNode.parentElement.hasAttribute('style')) {
-          list.style.display = '';
-        } else {
-          list.style.display = 'none';
-        }
         toolbar.style.display = 'none';
         return;
       }
 
       textarea.style.display = 'none';
-      list.style.display = 'none';
       toolbar.style.display = '';
 
       if (this.textareaPopper && this.textareaPopper.destroy) {
