@@ -74,7 +74,7 @@ export default {
       const list = this.$refs.list.$el;
       toolbar.style.display = 'none';
       textarea.style.display = 'none';
-      list.style.display = 'none';
+      list.style.display = '';
     }
   },
   mounted() {
