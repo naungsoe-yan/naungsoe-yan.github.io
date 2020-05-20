@@ -45,20 +45,18 @@
     <div class="rich-text-editor"></div>
   </section>
   <div id="toolbar" class="rich-text-toolbar"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.2.2/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.9.6/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
     tinymce.init({
       selector: '.rich-text-editor',
       plugins: ['autolink noneditable paste textcolor advlist lists table image link media'],
       menubar: false,
-      inline: true,
-      fixed_toolbar_container: '#toolbar',
       toolbar_mode: 'scrolling',
-      toolbar: 'tiny_mce_wiris_formulaEditor | undo redo | bold italic underline strikethrough | forecolor backcolor | fontselect formatselect | numlist bullist | table image link media | pastetext',
+      toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | fontselect formatselect | numlist bullist | tiny_mce_wiris_formulaEditor tiny_mce_wiris_formulaEditorChemistry',
       placeholder: 'Enter your answer here...',
       plugins: ['tiny_mce_wiris'],
       external_plugins: {
-        tiny_mce_wiris: 'http://127.0.0.1:8080/tiny_mce_wiris/plugin.js'
+        tiny_mce_wiris: 'https://naungsoe-yan.github.io/tiny_mce_wiris/plugin.js'
       }
     });
   </script>
