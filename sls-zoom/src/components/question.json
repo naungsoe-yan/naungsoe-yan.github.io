@@ -66,7 +66,7 @@
     "questionOptionModels": [
       {
         "id": 300501,
-        "fileName": "./DnDOption.png",
+        "fileName": "./DnDOption.PNG",
         "answer": "{\"xCoordinate\":\"226.40625\",\"yCoordinate\":\"40\",\"width\":150,\"height\":150}",
         "feedback": null,
         "answerOption": true,
@@ -101,7 +101,7 @@
     "answerValue": "",
     "asComponent": false,
     "parentStatus": null,
-    "fileName": "./DnD.png",
+    "fileName": "./DnD.PNG",
     "feedbackCorrect": "",
     "feedbackWrong": "",
     "fileOrientation": "LANDSCAPE",
