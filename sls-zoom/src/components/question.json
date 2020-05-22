@@ -1,0 +1,119 @@
+{
+    "uuid": "0dd686f9-1ab4-4413-9ba3-b9992100c92f",
+    "createdDate": "20200521222931",
+    "modifiedDate": "20200521222931",
+    "createdDateUI": "21 May 2020 10 : 29 PM",
+    "modifiedDateUI": "21 May 2020 10 : 29 PM",
+    "searchable": true,
+    "resourceDomain": "PERSONAL",
+    "contextType": null,
+    "contextUuid": null,
+    "title": null,
+    "description": null,
+    "keywords": "",
+    "questionType": "DND",
+    "modifiedBy": {
+      "id": 902281,
+      "name": "Yan",
+      "displayName": null,
+      "iamsStatus": "ACTIVE",
+      "uuid": "525af270-8583-404e-be47-da734936369a",
+      "expired": false
+    },
+    "owner": {
+      "id": 902281,
+      "name": "Yan",
+      "displayName": null,
+      "iamsStatus": "ACTIVE",
+      "uuid": "525af270-8583-404e-be47-da734936369a",
+      "expired": false
+    },
+    "originator": {
+      "id": 904576,
+      "name": "Huang RongXiang",
+      "displayName": null,
+      "iamsStatus": "ACTIVE",
+      "uuid": "fd7f79d4-a50e-4c00-8b35-2220a98a661d",
+      "expired": false
+    },
+    "publisher": null,
+    "status": "Approved",
+    "questionBody": "<div class=\"paragraph\">Drag to match the animals to their respective names.</div>",
+    "explanation": null,
+    "allQuestionsContainError": false,
+    "showSelectedErrors": false,
+    "learningOutcomeAndCognitiveLevelTexts": [
+      
+    ],
+    "questionBodyText": "Drag to match the animals to their respective names.",
+    "standaloneQuestion": false,
+    "parentFolderUuid": "",
+    "ownerId": null,
+    "ownerName": null,
+    "ownerEmail": null,
+    "deletedDate": null,
+    "ownerGroupId": -1,
+    "modifiedByName": null,
+    "noOfAttempt": 1,
+    "marks": 15,
+    "recommendedTime": 0,
+    "resourceTaggings": [
+      
+    ],
+    "topParentQuestionUuid": null,
+    "parentQuestionUuid": null,
+    "indexNo": 0,
+    "questionOptionModels": [
+      {
+        "id": 300501,
+        "fileName": "./DnDOption.png",
+        "answer": "{\"xCoordinate\":\"226.40625\",\"yCoordinate\":\"40\",\"width\":150,\"height\":150}",
+        "feedback": null,
+        "answerOption": true,
+        "actionStatus": null,
+        "caseSensitive": false,
+        "existing": false
+      },
+      {
+        "id": 300506,
+        "fileName": null,
+        "answer": "{\"xCoordinate\":\"33.953125\",\"yCoordinate\":\"187\",\"width\":150,\"height\":150,\"textValue\":\"MONKEY\"}",
+        "feedback": null,
+        "answerOption": true,
+        "actionStatus": null,
+        "caseSensitive": false,
+        "existing": false
+      },
+      {
+        "id": 300511,
+        "fileName": null,
+        "answer": "{\"xCoordinate\":\"458.5\",\"yCoordinate\":\"182\",\"width\":150,\"height\":150,\"textValue\":\"PIG\"}",
+        "feedback": null,
+        "answerOption": true,
+        "actionStatus": null,
+        "caseSensitive": false,
+        "existing": false
+      }
+    ],
+    "optionType": "SQUARE",
+    "hint": "",
+    "defaultAnswer": null,
+    "answerValue": "",
+    "asComponent": false,
+    "parentStatus": null,
+    "fileName": "./DnD.png",
+    "feedbackCorrect": "",
+    "feedbackWrong": "",
+    "fileOrientation": "LANDSCAPE",
+    "bgImgToBeDeleted": null,
+    "bgImgExisting": false,
+    "children": [
+      
+    ],
+    "gradingRubricUuid": null,
+    "showMarks": false,
+    "inQuiz": false,
+    "ccpmResource": false,
+    "originalCcpmResource": false,
+    "popularity": 0
+}
