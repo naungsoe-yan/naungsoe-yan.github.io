@@ -40,6 +40,104 @@ export default {
     }
   },
   methods: {
+    initPlot(width, height) {
+      const plot = this.$refs.plot;
+      const ratio = 320 / width; 
+      const svg = d3.select(plot)
+          .append('svg')
+          .attr('width', width * ratio)
+          .attr('height', height * ratio);
+
+      const group = svg.append('g');
+      const zoom = d3.zoom()
+        .translateExtent([[0, 0], [width * ratio, height * ratio]])
+        .scaleExtent([1, 2]);
+      zoom.on('zoom', function () {
+        group.attr('transform', d3.event.transform)
+      });
+      svg.call(zoom);
+
+      group.append('svg:image')
+        .attr('xlink:href', this.question.fileName)
+        .attr('x', 0)
+        .attr('y', 0)
+        .attr('width', width * ratio)
+        .attr('height', height * ratio);
+
+      const optionModels = this.question.questionOptionModels;
+      optionModels.forEach(optionModel => {
+        const answer = JSON.parse(optionModel.answer);
+        group.append('rect')
+          .attr('x', answer.xCoordinate * ratio)
+          .attr('y', answer.yCoordinate * ratio)
+          .attr('width', answer.width * ratio)
+          .attr('height', answer.height * ratio)
+          .style("stroke", 'black')
+          .style('fill', 'white')
+          .on('click', () => {
+            const selectedOption = options.querySelector('.selected');
+            if (!selectedOption || !selectedOption.getAttribute) return;
+            selectedOption.classList.remove('selected');
+
+            const image = selectedOption.querySelector('img');
+            const text = selectedOption.querySelector('div');
+            if (image && image.getAttribute) {
+              group.append('svg:image')
+                .attr('xlink:href', image.getAttribute('src'))
+                .attr('x', answer.xCoordinate * ratio)
+                .attr('y', answer.yCoordinate * ratio)
+                .attr('width', answer.width * ratio)
+                .attr('height', answer.height * ratio);
+            } else {
+              group.append('text')
+                .text(text.textContent)
+                .attr('x', (answer.xCoordinate * ratio) + 10)
+                .attr('y', (answer.yCoordinate * ratio) + ((answer.height * ratio) / 2))
+                .style('fill', 'black');
+            }
+          });
+      });
+
+      this.svg = Object.assign(svg.node(), {
+        zoomIn: () => svg.transition().call(zoom.scaleBy, 2),
+        zoomOut: () => svg.transition().call(zoom.scaleBy, 0.5),
+        zoomReset: () => svg.transition().duration(750)
+          .call(zoom.transform, d3.zoomIdentity,d3.zoomTransform(svg.node())
+          .invert([width / 2, height / 2])
+        )
+      });
+
+      const options = this.$refs.options;
+      optionModels.forEach(optionModel => {
+        const answer = JSON.parse(optionModel.answer);
+        const option = document.createElement('div');
+        const answerWidth = answer.width * ratio;
+        const answerHeight = answer.height * ratio;
+
+        if (optionModel.fileName) {
+          const image = document.createElement('img');
+          image.setAttribute('src', optionModel.fileName);
+          option.append(image);
+        } else {
+          const text = document.createElement('div');
+          text.textContent = answer.textValue;
+          option.append(text);
+        }
+        const width = `width: ${answerWidth}px;`;
+        const height = `height: ${answerHeight}px;`;
+        option.setAttribute('style', width + height);
+        option.classList.add('option');
+        options.appendChild(option);
+
+        option.addEventListener('click', () => {
+          const selectedOptions = options.querySelectorAll('.selected');
+          selectedOptions.forEach(selectedOption => {
+            selectedOption.classList.remove("selected");
+          });
+          option.classList.toggle("selected");
+        });
+      });
+    },
     handleZoomIn() {
       this.svg.zoomIn();
     },
@@ -51,101 +149,11 @@ export default {
     }
   },
   mounted() {
-    const plot = this.$refs.plot;
-    const width = 640, height = 351;
-    const ratio = 320 / width; 
-    const zoom = d3.zoom().scaleExtent([1, 2]);
-    zoom.on('zoom', function () {
-      svg.attr('transform', d3.event.transform)
-    });
-    const svg = d3.select(plot)
-        .append('svg')
-        .attr('width', width * ratio)
-        .attr('height', height * ratio)
-        .call(zoom);
-
-    const image = svg.append('g');
-    image.append('svg:image')
-      .attr('xlink:href', question.fileName)
-      .attr('x', 0)
-      .attr('y', 0)
-      .attr('width', width * ratio)
-      .attr('height', height * ratio);
-
-    const optionModels = this.question.questionOptionModels;
-    optionModels.forEach(optionModel => {
-      const group = svg.append('g');
-      const answer = JSON.parse(optionModel.answer);
-      group.append('rect')
-        .attr('x', answer.xCoordinate * ratio)
-        .attr('y', answer.yCoordinate * ratio)
-        .attr('width', answer.width * ratio)
-        .attr('height', answer.height * ratio)
-        .style("stroke", 'black')
-        .style('fill', 'white')
-        .on('click', () => {
-          const selectedOption = options.querySelector('.selected');
-          if (!selectedOption || !selectedOption.getAttribute) return;
-          selectedOption.classList.remove('selected');
-
-          const image = selectedOption.querySelector('img');
-          const text = selectedOption.querySelector('div');
-          if (image && image.getAttribute) {
-            group.append('svg:image')
-              .attr('xlink:href', image.getAttribute('src'))
-              .attr('x', answer.xCoordinate * ratio)
-              .attr('y', answer.yCoordinate * ratio)
-              .attr('width', answer.width * ratio)
-              .attr('height', answer.height * ratio);
-          } else {
-            group.append('text')
-              .text(text.textContent)
-              .attr('x', (answer.xCoordinate * ratio) + 10)
-              .attr('y', (answer.yCoordinate * ratio) + ((answer.height * ratio) / 2))
-              .style('fill', 'black');
-          }
-        });
-    });
-
-    this.svg = Object.assign(svg.node(), {
-      zoomIn: () => svg.transition().call(zoom.scaleBy, 2),
-      zoomOut: () => svg.transition().call(zoom.scaleBy, 0.5),
-      zoomReset: () => svg.transition().duration(750)
-        .call(zoom.transform, d3.zoomIdentity,d3.zoomTransform(svg.node())
-        .invert([width / 2, height / 2])
-      )
-    });
-
-    const options = this.$refs.options;
-    optionModels.forEach(optionModel => {
-      const answer = JSON.parse(optionModel.answer);
-      const option = document.createElement('div');
-      const answerWidth = answer.width * ratio;
-      const answerHeight = answer.height * ratio;
-
-      if (optionModel.fileName) {
-        const image = document.createElement('img');
-        image.setAttribute('src', optionModel.fileName);
-        option.append(image);
-      } else {
-        const text = document.createElement('div');
-        text.textContent = answer.textValue;
-        option.append(text);
-      }
-      const width = `width: ${answerWidth}px;`;
-      const height = `height: ${answerHeight}px;`;
-      option.setAttribute('style', width + height);
-      option.classList.add('option');
-      options.appendChild(option);
-
-      option.addEventListener('click', () => {
-        const selectedOptions = options.querySelectorAll('.selected');
-        selectedOptions.forEach(selectedOption => {
-          selectedOption.classList.remove("selected");
-        });
-        option.classList.toggle("selected");
-      });
-    });
+    const img = new Image();
+    img.addEventListener('load', () => { 
+      this.initPlot(img.width, img.height);
+    }, false);
+    img.src = this.question.fileName;
   }
 }
 </script>
