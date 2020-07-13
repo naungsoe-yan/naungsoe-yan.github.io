@@ -110,15 +110,49 @@
         fixed_toolbar_container: `#${editorId} .editor-toolbar`,
         contextmenu: false,
         contextmenu_never_use_native: false,
-        plugins: 'print preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap emoticons',
+        plugins: 'print preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap emoticons tiny_mce_wiris',
         menubar: false,
         inline: true,
         toolbar_mode: 'sliding',
-        toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+        toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | numlist bullist | fontselect formatselect | attachment recording link media table | drawing tiny_mce_wiris_formulaEditor tiny_mce_wiris_formulaEditorChemistry',
         mobile: {
-           toolbar_mode: 'sliding'
+           toolbar_mode: 'sliding',
+           plugins: 'print preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap emoticons tiny_mce_wiris',
+           toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | numlist bullist | fontselect formatselect | attachment recording link media table | drawing tiny_mce_wiris_formulaEditor tiny_mce_wiris_formulaEditorChemistry'
         },
-        placeholder: 'Enter your answer here...'
+        placeholder: 'Enter your answer here...',
+        external_plugins: {
+          tiny_mce_wiris: 'https://naungsoe-yan.github.io/tiny_mce_wiris/plugin.js'
+        },
+        setup: (editor) => {
+          editor.ui.registry.addIcon('attachment', '<svg height="14pt" viewBox="-96 0 512 512" width="14pt" xmlns="http://www.w3.org/2000/svg"><path d="m160 512c-88.234375 0-160-71.765625-160-160v-224c0-11.796875 9.558594-21.332031 21.332031-21.332031 11.777344 0 21.335938 9.535156 21.335938 21.332031v224c0 64.683594 52.628906 117.332031 117.332031 117.332031s117.332031-52.648437 117.332031-117.332031v-234.667969c0-41.171875-33.492187-74.664062-74.664062-74.664062-41.175781 0-74.667969 33.492187-74.667969 74.664062v213.335938c0 17.640625 14.355469 32 32 32s32-14.359375 32-32v-202.667969c0-11.796875 9.558594-21.332031 21.332031-21.332031 11.777344 0 21.335938 9.535156 21.335938 21.332031v202.667969c0 41.171875-33.496094 74.664062-74.667969 74.664062s-74.667969-33.492187-74.667969-74.664062v-213.335938c0-64.679687 52.628907-117.332031 117.335938-117.332031 64.703125 0 117.332031 52.652344 117.332031 117.332031v234.667969c0 88.234375-71.765625 160-160 160zm0 0"/></svg>');
+          editor.ui.registry.addMenuButton('attachment', {
+            icon: 'attachment',
+            fetch: function (callback) {
+              callback([
+                {
+                  type: 'menuitem',
+                  text: 'Upload file',
+                  onAction: function () {}
+                },
+                {
+                  type: 'menuitem',
+                  text: 'Add from Library',
+                  onAction: function () {}
+                }
+              ]);
+            }
+          });
+          editor.ui.registry.addIcon('recording', '<svg enable-background="new 0 0 512 512" height="16pt" viewBox="0 0 512 512" width="16pt" xmlns="http://www.w3.org/2000/svg"><g><path d="m241 420.323v61.677h-90v30h210v-30h-90v-61.677c67.33-6.042 122.865-52.795 142.411-114.813l-28.612-9.018c-17.817 56.528-69.577 94.508-128.799 94.508s-110.982-37.98-128.799-94.509l-28.612 9.018c19.525 61.95 75.011 108.765 142.411 114.814z"/><path d="m256 361c57.897 0 105-47.103 105-105v-150c0-58.449-47.103-106-105-106s-105 47.551-105 106v150c0 57.897 47.103 105 105 105zm-75-180h45v-30h-45v-30h45v-30h-43.526c6.892-34.746 37.238-61 73.526-61s66.634 26.254 73.526 61h-43.526v30h45v30h-45v30h45v30h-150zm0 60h150v15c0 41.355-33.645 75-75 75s-75-33.645-75-75z"/></g></svg>');
+          editor.ui.registry.addButton('recording', {
+            icon: 'recording',
+            onAction: function() {}
+          });
+          editor.ui.registry.addButton('drawing', {
+            icon: 'color-picker',
+            onAction: function() {}
+          });
+        }
       });
     });
   </script>
