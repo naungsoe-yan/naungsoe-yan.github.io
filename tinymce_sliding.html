@@ -114,11 +114,11 @@
         menubar: false,
         inline: true,
         toolbar_mode: 'sliding',
-        toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | numlist bullist | fontselect formatselect | attachment recording link media table | drawing tiny_mce_wiris_formulaEditor tiny_mce_wiris_formulaEditorChemistry',
+        toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | numlist bullist | fontselect formatselect | attachment recording link media table drawing | tiny_mce_wiris_formulaEditor tiny_mce_wiris_formulaEditorChemistry | website comment tooltip',
         mobile: {
            toolbar_mode: 'sliding',
            plugins: 'print preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap emoticons tiny_mce_wiris',
-           toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | numlist bullist | fontselect formatselect | attachment recording link media table | drawing tiny_mce_wiris_formulaEditor tiny_mce_wiris_formulaEditorChemistry'
+           toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | numlist bullist | fontselect formatselect | attachment recording link media table drawing | tiny_mce_wiris_formulaEditor tiny_mce_wiris_formulaEditorChemistry | website comment tooltip'
         },
         placeholder: 'Enter your answer here...',
         external_plugins: {
@@ -150,6 +150,18 @@
           });
           editor.ui.registry.addButton('drawing', {
             icon: 'color-picker',
+            onAction: function() {}
+          });
+          editor.ui.registry.addButton('website', {
+            icon: 'embed-page',
+            onAction: function() {}
+          });
+          editor.ui.registry.addButton('comment', {
+            icon: 'comment',
+            onAction: function() {}
+          });
+          editor.ui.registry.addButton('tooltip', {
+            text: 'Tooltip',
             onAction: function() {}
           });
         }
