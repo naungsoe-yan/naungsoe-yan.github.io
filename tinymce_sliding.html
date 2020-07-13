@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Student Learning Space</title>
+  <style>
+    .rich-text-editor {
+      border: 1px solid #ddd;
+    }
+    .rich-text-editor .editor-body {
+      overflow-x: hidden;
+      overflow-y: auto;
+      max-height: 6rem;
+      min-height: 3rem;
+      outline: none;
+    }
+    .rich-text-editor .editor-body::before {
+      margin: .5rem;
+    }
+    .rich-text-editor .editor-body p {
+      margin: .5rem;
+    }
+  </style>
+</head>
+<body style="padding: 1rem 2rem; margin: auto; max-width: 800px;">
+  <section>
+    <h1 style="font-family: sans-serif;">Question</h1>
+    <p style="font-family: sans-serif;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
+    <div id="editor_1" class="rich-text-editor">
+      <div class="editor-toolbar"></div>
+      <div class="editor-body"></div>
+    </div>
+  </section>
+  <br/>
+  <section>
+    <h1 style="font-family: sans-serif;">Question</h1>
+    <p style="font-family: sans-serif;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
+    <div id="editor_2" class="rich-text-editor">
+      <div class="editor-toolbar"></div>
+      <div class="editor-body"></div>
+    </div>
+  </section>
+  <br/>
+  <section>
+    <h1 style="font-family: sans-serif;">Question</h1>
+    <p style="font-family: sans-serif;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
+    <div id="editor_3" class="rich-text-editor">
+      <div class="editor-toolbar"></div>
+      <div class="editor-body"></div>
+    </div>
+  </section>
+  <section style="background: #eee; padding: 1rem; position: sticky; bottom: 0;">
+    <div style="font-family: sans-serif; font-weight: bold; margin-bottom: 1rem;">Question</div>
+    <div id="editor_4" class="rich-text-editor">
+      <div class="editor-toolbar"></div>
+      <div class="editor-body"></div>
+    </div>
+    <div style="margin-top: 1rem;">
+      <button type="button">Submit</button>
+      <button type="button">Cancel</button>
+    </div>
+  </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.3.2/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+    const elements = Array.from(document.querySelectorAll('.rich-text-editor'));
+    elements.forEach(element => {
+      const editorId = element.getAttribute('id');
+      tinymce.init({
+        selector: `#${editorId} .editor-body`,
+        fixed_toolbar_container: `#${editorId} .editor-toolbar`,
+        contextmenu: false,
+        contextmenu_never_use_native: false,
+        plugins: 'print preview powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount tinymcespellchecker a11ychecker imagetools textpattern noneditable help formatpainter permanentpen pageembed charmap tinycomments mentions linkchecker emoticons advtable',
+        menubar: false,
+        inline: true,
+        toolbar_mode: 'sliding',
+        toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment',
+        mobile: {
+           toolbar_mode: 'sliding'
+        },
+        placeholder: 'Enter your answer here...'
+      });
+    });
+  </script>
+</body>
+</html>
