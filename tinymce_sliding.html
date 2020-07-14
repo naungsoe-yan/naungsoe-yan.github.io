@@ -110,18 +110,54 @@
         fixed_toolbar_container: `#${editorId} .editor-toolbar`,
         contextmenu: false,
         contextmenu_never_use_native: false,
-        plugins: 'print preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap emoticons',
+        plugins: 'print preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime lists advlist wordcount imagetools textpattern noneditable help charmap emoticons',
         menubar: false,
         inline: true,
         toolbar_mode: 'sliding',
-        toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | numlist bullist | fontselect formatselect | attachment recording link media table drawing | maths science | website comment tooltip',
+        toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | alignment numlist bullist | fontselect formatselect | attachment recording link media table drawing | maths science | website comment tooltip',
         mobile: {
            toolbar_mode: 'sliding',
-           plugins: 'print preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap emoticons',
-           toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | numlist bullist | fontselect formatselect | attachment recording link media table drawing | maths science | website comment tooltip'
+           plugins: 'print preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime lists advlist wordcount imagetools textpattern noneditable help charmap emoticons',
+           toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | alignment numlist bullist | fontselect formatselect | attachment recording link media table drawing | maths science | website comment tooltip'
         },
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
+          //alignleft aligncenter alignright alignjustify
+          editor.ui.registry.addSplitButton('alignment', {
+            icon: 'align-left',
+            columns: 4,
+            fetch: function (callback) {
+              callback([
+                { type: 'choiceitem', icon: 'align-left', value: 'left' },
+                { type: 'choiceitem', icon: 'align-center', value: 'center' },
+                { type: 'choiceitem', icon: 'align-right', value: 'right' },
+                { type: 'choiceitem', icon: 'align-justify', value: 'justify' }
+              ]);
+            },
+            onAction: function() {
+              editor.execCommand('justifyLeft');
+            },
+            onItemAction: function(buttonApi, value) {
+              const alignment = (value === 'justify') ? 'full' : value;
+              editor.execCommand(`justify${alignment}`);
+            },
+            select: function(value) {
+              const node = editor.selection.getNode();
+              const parent = editor.dom.getParent(node, '[style*="text-align"]');
+              return editor.dom.getStyle(parent, 'textAlign') === value;
+            },
+            onSetup: function(buttonApi) {
+              const nodeChangeHandler = function(eventApi) {
+                buttonApi.setActive(eventApi.parents.some(parent => {
+                  return !!editor.dom.getStyle(parent, 'textAlign');
+                }));
+              };
+              editor.on('NodeChange', nodeChangeHandler);
+              return function () {
+                return editor.off('NodeChange', nodeChangeHandler);
+              };
+            }
+          });
           editor.ui.registry.addIcon('attachment', '<svg height="14pt" viewBox="-96 0 512 512" width="14pt" xmlns="http://www.w3.org/2000/svg"><path d="m160 512c-88.234375 0-160-71.765625-160-160v-224c0-11.796875 9.558594-21.332031 21.332031-21.332031 11.777344 0 21.335938 9.535156 21.335938 21.332031v224c0 64.683594 52.628906 117.332031 117.332031 117.332031s117.332031-52.648437 117.332031-117.332031v-234.667969c0-41.171875-33.492187-74.664062-74.664062-74.664062-41.175781 0-74.667969 33.492187-74.667969 74.664062v213.335938c0 17.640625 14.355469 32 32 32s32-14.359375 32-32v-202.667969c0-11.796875 9.558594-21.332031 21.332031-21.332031 11.777344 0 21.335938 9.535156 21.335938 21.332031v202.667969c0 41.171875-33.496094 74.664062-74.667969 74.664062s-74.667969-33.492187-74.667969-74.664062v-213.335938c0-64.679687 52.628907-117.332031 117.335938-117.332031 64.703125 0 117.332031 52.652344 117.332031 117.332031v234.667969c0 88.234375-71.765625 160-160 160zm0 0"/></svg>');
           editor.ui.registry.addMenuButton('attachment', {
             icon: 'attachment',
