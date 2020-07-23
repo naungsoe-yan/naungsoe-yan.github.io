@@ -29,7 +29,7 @@
     <h1 style="font-family: sans-serif;">RichText Editor</h1>
     <div id="editor" class="rich-text-editor">
       <div class="editor-toolbar"></div>
-      <div class="editor-body"></div>
+      <div class="editor-body">Existing content</div>
     </div>
   </section>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.3.2/tinymce.min.js" referrerpolicy="origin"></script>
@@ -55,14 +55,19 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           editor.on('keydown', function(event) {
-            alert('keydown', event);
+            alert('keydown');
             event.preventDefault();
+            event.stopPropagation();
             return false;
           });
-          editor.on('keyup', function(event) {
-            alert('keyup', event);
-            event.preventDefault();
-            return false;
+          editor.on('input', function(event) {
+            alert('input');
+            const selection = editor.selection.getSel();
+            const anchorNode = selection.anchorNode;
+            const range = document.createRange();
+            range.setStart(anchorNode, anchorNode.length - 1);
+            range.setEnd(anchorNode, anchorNode.length);
+            range.deleteContents();
           });
 
           //alignleft aligncenter alignright alignjustify
