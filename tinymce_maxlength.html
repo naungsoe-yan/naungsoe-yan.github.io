@@ -54,17 +54,18 @@
         },
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
+          alert("it is new setup");
           editor.on('keydown', function(event) {
             console.log('keydown');
             event.preventDefault();
             event.stopPropagation();
-            return true;
+            return false;
           });
           editor.on('keypress', function(event) {
             console.log('keypress');
             event.preventDefault();
             event.stopPropagation();
-            return true;
+            return false;
           });
 
           //alignleft aligncenter alignright alignjustify
