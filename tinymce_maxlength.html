@@ -54,20 +54,8 @@
         },
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
-          editor.on('beforeinput', function(event) {
-            alert('beforeinput', event);
-            event.preventDefault();
-            event.stopPropagation();
-            return false;
-          });
           editor.on('input', function(event) {
             alert('input', event);
-            event.preventDefault();
-            event.stopPropagation();
-            return false;
-          });
-          editor.on('keydown', function(event) {
-            alert('keydown', event);
             event.preventDefault();
             event.stopPropagation();
             return false;
