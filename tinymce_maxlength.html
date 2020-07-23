@@ -60,6 +60,18 @@
             event.stopPropagation();
             return false;
           });
+          editor.on('input', function(event) {
+            alert('input', event);
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+          });
+          editor.on('keydown', function(event) {
+            alert('keydown', event);
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+          });
 
           //alignleft aligncenter alignright alignjustify
           editor.ui.registry.addSplitButton('alignment', {
