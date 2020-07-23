@@ -56,15 +56,11 @@
         setup: (editor) => {
           alert("it is new setup");
           editor.on('keydown', function(event) {
-            console.log('keydown');
-            event.preventDefault();
-            event.stopPropagation();
+            tinymce.dom.Event.cancel(event);
             return false;
           });
           editor.on('keypress', function(event) {
-            console.log('keypress');
-            event.preventDefault();
-            event.stopPropagation();
+            tinymce.dom.Event.cancel(event);
             return false;
           });
 
