@@ -54,10 +54,11 @@
         },
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
-          editor.on('input', function(event) {
-            alert('input', event);
+          editor.on('keydown', function(event) {
+            alert('keydown', event);
             event.preventDefault();
             event.stopPropagation();
+            event.stopImmediatePropagation();
             return false;
           });
 
