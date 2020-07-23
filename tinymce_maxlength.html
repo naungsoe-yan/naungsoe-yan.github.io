@@ -54,8 +54,8 @@
         },
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
-          alert("it is beforeinput setup");
           editor.on('beforeinput', function(event) {
+            alert('beforeinput', event);
             event.preventDefault();
             event.stopPropagation();
             return false;
