@@ -54,7 +54,6 @@
         },
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
-          alert("it is new setup");
           editor.on('keydown', function(event) {
             tinymce.dom.Event.cancel(event);
             return false;
