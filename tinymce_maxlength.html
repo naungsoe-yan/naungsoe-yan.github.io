@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Student Learning Space</title>
   <style>
-    button {
-      padding: .375rem .75rem;
-    }
     .rich-text-editor {
       border: 1px solid #ddd;
     }
@@ -28,80 +25,15 @@
   </style>
 </head>
 <body style="padding: 1rem 2rem; margin: auto; max-width: 800px;">
-  <button type="button" class="content-popup">Content Popup</button>
-  <button type="button" class="content-sticky">Content Sticky</button>
   <section>
-    <h1 style="font-family: sans-serif;">Question</h1>
-    <p style="font-family: sans-serif;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
-    <div id="editor_1" class="rich-text-editor">
+    <h1 style="font-family: sans-serif;">RichText Editor</h1>
+    <div id="editor" class="rich-text-editor">
       <div class="editor-toolbar"></div>
       <div class="editor-body"></div>
-    </div>
-  </section>
-  <br/>
-  <section>
-    <h1 style="font-family: sans-serif;">Question</h1>
-    <p style="font-family: sans-serif;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
-    <div id="editor_2" class="rich-text-editor">
-      <div class="editor-toolbar"></div>
-      <div class="editor-body"></div>
-    </div>
-  </section>
-  <br/>
-  <section>
-    <h1 style="font-family: sans-serif;">Question</h1>
-    <p style="font-family: sans-serif;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.</p>
-    <div id="editor_3" class="rich-text-editor">
-      <div class="editor-toolbar"></div>
-      <div class="editor-body"></div>
-    </div>
-  </section>
-  <section class="content-popup-section" style="display: none; background: #eee; padding: 1rem; position: absolute; top: 12rem; left: 2rem; right: 2rem;">
-    <div style="font-family: sans-serif; font-weight: bold; margin-bottom: 1rem;">Question</div>
-    <div id="content_popup" class="rich-text-editor">
-      <div class="editor-toolbar"></div>
-      <div class="editor-body"></div>
-    </div>
-    <div style="margin-top: 1rem;">
-      <button type="button">Submit</button>
-      <button type="button">Cancel</button>
-    </div>
-  </section>
-  <section class="content-sticky-section" style="display: none; background: #eee; padding: 1rem; position: sticky; bottom: 0;">
-    <div style="font-family: sans-serif; font-weight: bold; margin-bottom: 1rem;">Question</div>
-    <div id="content_sticky" class="rich-text-editor">
-      <div class="editor-toolbar"></div>
-      <div class="editor-body"></div>
-    </div>
-    <div style="margin-top: 1rem;">
-      <button type="button">Submit</button>
-      <button type="button">Cancel</button>
     </div>
   </section>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.3.2/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
-    const contentPopup = document.querySelector('.content-popup');
-    contentPopup.addEventListener("click", function() {
-      const section = document.querySelector('.content-popup-section');
-      if (section.style.display === 'none') {
-        section.style.display = '';
-        tinymce.get("mce_4").focus();
-      } else {
-       section.style.display = 'none';
-      }
-    }, false);
-
-    const contentSticky = document.querySelector('.content-sticky');
-    contentSticky.addEventListener("click", function() {
-      const section = document.querySelector('.content-sticky-section');
-      if (section.style.display === 'none') {
-        section.style.display = '';
-        tinymce.get("mce_5").focus();
-      } else {
-       section.style.display = 'none';
-      }
-    }, false);
-
     const elements = Array.from(document.querySelectorAll('.rich-text-editor'));
     elements.forEach(element => {
       const editorId = element.getAttribute('id');
@@ -122,6 +54,19 @@
         },
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
+          editor.on('keydown', function(event) {
+            console.log('keydown');
+            event.preventDefault();
+            event.stopPropagation();
+            return true;
+          });
+          editor.on('keypress', function(event) {
+            console.log('keypress');
+            event.preventDefault();
+            event.stopPropagation();
+            return true;
+          });
+
           //alignleft aligncenter alignright alignjustify
           editor.ui.registry.addSplitButton('alignment', {
             icon: 'align-left',
