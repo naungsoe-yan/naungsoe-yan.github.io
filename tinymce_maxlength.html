@@ -55,7 +55,12 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           editor.on('keydown', function(event) {
-            console.log('keydown', event);
+            alert('keydown', event);
+            event.preventDefault();
+            return false;
+          });
+          editor.on('keyup', function(event) {
+            alert('keyup', event);
             event.preventDefault();
             return false;
           });
