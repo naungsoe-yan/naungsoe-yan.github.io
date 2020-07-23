@@ -122,14 +122,17 @@
         },
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
+          alert("it is new setup");
           editor.on('keydown', function(event) {
             console.log('keydown');
             event.preventDefault();
+            event.stopPropagation();
             return false;
           });
           editor.on('keyup', function(event) {
             console.log('keyup');
             event.preventDefault();
+            event.stopPropagation();
             return false;
           });
 
