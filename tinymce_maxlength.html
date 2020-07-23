@@ -54,10 +54,9 @@
         },
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
-          editor.on('keyup', function(event) {
-            console.log('keyup', event);
+          editor.on('keydown', function(event) {
+            console.log('keydown', event);
             event.preventDefault();
-            event.stopPropagation();
             return false;
           });
 
