@@ -54,14 +54,8 @@
         },
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
-          alert("it is updated setup");
-          editor.on('keydown', function(event) {
-            alert(event);
-            event.preventDefault();
-            event.stopPropagation();
-            return false;
-          });
-          editor.on('keypress', function(event) {
+          alert("it is beforeinput setup");
+          editor.on('beforeinput', function(event) {
             event.preventDefault();
             event.stopPropagation();
             return false;
