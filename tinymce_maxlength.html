@@ -54,8 +54,8 @@
         },
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
-          editor.on('keypress', function(event) {
-            console.log('keypress', event);
+          editor.on('keyup', function(event) {
+            console.log('keyup', event);
             event.preventDefault();
             event.stopPropagation();
             return false;
