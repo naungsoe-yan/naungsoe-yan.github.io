@@ -64,8 +64,8 @@
           console.value += 'setup6\n';
           editor.on('keydown', function(event) {
             console.value += `keydown: ${event.key}, ${event.keyCode}\n`;
-            //event.preventDefault();
-            //return false;
+            event.preventDefault();
+            return false;
           });
           editor.on('input', function(event) {
             try {
