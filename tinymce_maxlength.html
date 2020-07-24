@@ -63,22 +63,22 @@
           const console = document.querySelector('#console');
           console.value += 'setup2\n';
           editor.on('keydown', function(event) {
-            console.value += `keydown: ${event.keyCode}\n;
+            console.value += `keydown: ${event.keyCode}\n`;
             event.preventDefault();
             return false;
           });
           editor.on('input', function(event) {
             try {
-              console.value += 'input\n';
+              console.value +=  `input: ${event.target.value}\n`;
               const selection = window.getSelection();
               const anchorNode = selection.anchorNode;
-              console.value +=  'input: ${event.target.value}\n';
+              console.value +=  `anchor: ${anchorNode}\n`;
               const range = document.createRange();
               range.setStart(anchorNode, anchorNode.length - 1);
               range.setEnd(anchorNode, anchorNode.length);
               range.deleteContents();
-            } catch(e) {
-              console.value += e + '\n';
+            } catch(error) {
+              console.value += `${error}n`;
             }
           });
 
