@@ -61,6 +61,7 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
+          console.value += 'setup\n';
           editor.on('keydown', function(event) {
             console.value += 'keydown\n';
             event.preventDefault();
@@ -76,6 +77,7 @@
             range.setStart(anchorNode, anchorNode.length - 1);
             range.setEnd(anchorNode, anchorNode.length);
             range.deleteContents();
+            return false;
           });
 
           //alignleft aligncenter alignright alignjustify
