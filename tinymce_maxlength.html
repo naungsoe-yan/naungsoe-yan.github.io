@@ -61,16 +61,16 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += 'setup4\n';
+          console.value += 'setup5\n';
           editor.on('keydown', function(event) {
-            console.value += `keydown: ${event.key}\n`;
+            console.value += `keydown: ${event.key}, ${event.keyCode}\n`;
             event.preventDefault();
             return false;
           });
           editor.on('input', function(event) {
             try {
               console.value +=  `input: ${event.target.innerText}\n`;
-              const selection = window.getSelection();
+              const selection = document.getSelection();
               const anchorNode = selection.anchorNode;
               console.value +=  `anchor: ${anchorNode.nodeValue}\n`;
               const range = document.createRange();
