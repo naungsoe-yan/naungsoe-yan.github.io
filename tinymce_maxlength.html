@@ -61,7 +61,7 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += 'setup12\n';
+          console.value += 'setup13\n';
           editor.on('keydown', function(event) {
             console.value += `keydown: ${event.key}, ${event.keyCode}\n`;
             event.preventDefault();
@@ -79,7 +79,7 @@
               range.deleteContents();
               selection.removeRange(range);
 
-              range.setStart(container, container.length - 1);
+              range.setStart(container, container.length);
               range.setEnd(container, container.length);
               selection.addRange(range);
             } catch(error) {
