@@ -63,8 +63,8 @@
           const console = document.querySelector('#console');
           editor.on('keydown', function(event) {
             console.value += 'keydown\n';
-            //event.preventDefault();
-            //return false;
+            event.preventDefault();
+            return false;
           });
           editor.on('input', function(event) {
             console.value += 'input\n';
