@@ -36,7 +36,7 @@
       <div class="editor-toolbar"></div>
       <div class="editor-body">Existing content</div>
     </div>
-    <textarea id="console" class="rich-text-console">setup33</textarea>
+    <textarea id="console" class="rich-text-console">setup34</textarea>
   </section>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.3.2/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
@@ -61,7 +61,7 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          const maxLength = 80;
+          const maxLength = 40;
           let maxLengthReached = false;
           editor.on('keydown', function(event) {
             console.value = `keydown: ${event.code}, ${event.key}`;
