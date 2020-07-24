@@ -64,18 +64,18 @@
           console.value += 'setup5\n';
           editor.on('keydown', function(event) {
             console.value += `keydown: ${event.key}, ${event.keyCode}\n`;
-            event.preventDefault();
-            return false;
+            //event.preventDefault();
+            //return false;
           });
           editor.on('input', function(event) {
             try {
               console.value +=  `input: ${event.target.innerText}\n`;
               const selection = document.getSelection();
-              const anchorNode = selection.anchorNode;
-              console.value +=  `anchor: ${anchorNode.nodeValue}\n`;
+              const focusNode = selection.focusNode;
+              console.value +=  `anchor: ${focusNode.nodeValue}\n`;
               const range = document.createRange();
-              range.setStart(anchorNode, anchorNode.length - 1);
-              range.setEnd(anchorNode, anchorNode.length);
+              range.setStart(focusNode, anchorNode.length - 1);
+              range.setEnd(focusNode, anchorNode.length);
               range.deleteContents();
             } catch(error) {
               console.value += `error: ${error}n`;
