@@ -61,24 +61,24 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += 'setup2\n';
+          console.value += 'setup3\n';
           editor.on('keydown', function(event) {
-            console.value += `keydown: ${event.keyCode}\n`;
+            console.value += `keydown: ${event.code}\n`;
             event.preventDefault();
             return false;
           });
           editor.on('input', function(event) {
             try {
-              console.value +=  `input: ${event.target.value}\n`;
+              console.value +=  `input: ${event.target.innerText}\n`;
               const selection = window.getSelection();
               const anchorNode = selection.anchorNode;
-              console.value +=  `anchor: ${anchorNode}\n`;
+              console.value +=  `anchor: ${anchorNode.nodeValue}\n`;
               const range = document.createRange();
               range.setStart(anchorNode, anchorNode.length - 1);
               range.setEnd(anchorNode, anchorNode.length);
               range.deleteContents();
             } catch(error) {
-              console.value += `${error}n`;
+              console.value += `error: ${error}n`;
             }
           });
 
