@@ -65,6 +65,7 @@
           editor.on('keydown', function(event) {
             console.value += 'keydown\n';
             event.preventDefault();
+            event.stopPropagation();
             return false;
           });
           editor.on('input', function(event) {
