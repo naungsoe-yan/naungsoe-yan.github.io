@@ -61,7 +61,7 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += 'setup15\n';
+          console.value += 'setup16\n';
           editor.on('keydown', function(event) {
             console.value += `keydown: ${event.key}, ${event.keyCode}\n`;
             event.preventDefault();
@@ -79,10 +79,13 @@
               range.deleteContents();
               selection.removeRange(range);
 
-              const newRange = editor.selection.getRng();
-              newRange.setStart(container, container.length);
-              newRange.setEnd(container, container.length);
-              selection.addRange(newRange);
+              setTimeout(function waitNormalFlow() {
+                const newSelection = editor.selection.getSel();
+                const newRange = editor.selection.getRng();
+                newRange.setStart(container, container.length);
+                newRange.setEnd(container, container.length);
+                newSelection.addRange(newRange);
+              });
             } catch(error) {
               console.value += `error: ${error}n`;
             }
