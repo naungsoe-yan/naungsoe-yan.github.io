@@ -59,7 +59,7 @@
             return false;
           });
           editor.on('input', function(event) {
-            const selection = editor.selection.getSel();
+            const selection = window.getSelection();
             const anchorNode = selection.anchorNode;
             const range = document.createRange();
             range.setStart(anchorNode, anchorNode.length - 1);
