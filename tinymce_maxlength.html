@@ -55,13 +55,11 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           editor.on('keydown', function(event) {
-            alert('keydown');
             event.preventDefault();
             event.stopPropagation();
             return false;
           });
           editor.on('input', function(event) {
-            alert('input');
             const selection = editor.selection.getSel();
             const anchorNode = selection.anchorNode;
             const range = document.createRange();
