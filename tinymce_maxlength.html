@@ -61,9 +61,9 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += `setup: 50`;
+          console.value += `setup: 51`;
 
-          const maxLength = 40;
+          const maxLength = 26;
           let maxLengthReached = false;
           editor.on('keydown', function(event) {
             const code = event.code || event.key;
@@ -74,7 +74,7 @@
             }
 
             const content = editor.getContent();
-            console.value += `\nkeydown: ${content.length}`;
+            console.value += `\nkeydown: ${content.length}, `;
             if (content.length >= maxLength) {
               maxLengthReached = true;
               event.preventDefault();
