@@ -61,9 +61,9 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += 'setup3\n';
+          console.value += 'setup4\n';
           editor.on('keydown', function(event) {
-            console.value += `keydown: ${event.code}\n`;
+            console.value += `keydown: ${event.key}\n`;
             event.preventDefault();
             return false;
           });
