@@ -61,7 +61,7 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += `setup: 53`;
+          console.value += `setup: 54`;
 
           const maxLength = 26;
           let maxLengthReached = false;
@@ -99,7 +99,6 @@
               range.setStart(container, container.length - 1);
               range.setEnd(container, container.length);
               range.deleteContents();
-              selection.removeRange(range);
             }
           });
 
