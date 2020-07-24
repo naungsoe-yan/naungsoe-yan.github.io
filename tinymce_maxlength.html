@@ -65,7 +65,6 @@
           editor.on('keydown', function(event) {
             console.value += 'keydown\n';
             event.preventDefault();
-            event.stopPropagation();
             return false;
           });
           editor.on('input', function(event) {
@@ -77,6 +76,7 @@
             range.setStart(anchorNode, anchorNode.length - 1);
             range.setEnd(anchorNode, anchorNode.length);
             range.deleteContents();
+            return false;
           });
 
           //alignleft aligncenter alignright alignjustify
