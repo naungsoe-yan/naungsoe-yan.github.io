@@ -36,7 +36,7 @@
       <div class="editor-toolbar"></div>
       <div class="editor-body">Existing content</div>
     </div>
-    <textarea id="console" class="rich-text-console">setup47</textarea>
+    <textarea id="console" class="rich-text-console"></textarea>
   </section>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.3.2/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
@@ -61,6 +61,8 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
+          console.value += `setup: 50`;
+
           const maxLength = 40;
           let maxLengthReached = false;
           editor.on('keydown', function(event) {
@@ -72,7 +74,7 @@
             }
 
             const content = editor.getContent();
-            console.value = `content: ${content}`;
+            console.value += `\nkeydown: ${content.length}`;
             if (content.length >= maxLength) {
               maxLengthReached = true;
               event.preventDefault();
@@ -80,18 +82,23 @@
             }
           });
           editor.on('input', function(event) {
-            if (!maxLengthReached) return;
-            const selection = editor.selection.getSel();
-            if (!selection || !selection.isCollapsed) {
+            if (!maxLengthReached) {
               return;
             }
 
-            const range = editor.selection.getRng();
-            const container = range.startContainer;
-            range.setStart(container, container.length - 1);
-            range.setEnd(container, container.length);
-            range.deleteContents();
-            selection.removeRange(range);
+            const content = editor.getContent();
+            console.value += `input: ${content.length}`;
+
+            const selection = editor.selection.getSel();
+
+            if (selection && selection.isCollapsed) {
+              const range = editor.selection.getRng();
+              const container = range.startContainer;
+              range.setStart(container, container.length - 1);
+              range.setEnd(container, container.length);
+              range.deleteContents();
+              selection.removeRange(range);
+            }
           });
 
           //alignleft aligncenter alignright alignjustify
