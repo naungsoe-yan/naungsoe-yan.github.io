@@ -61,7 +61,7 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += `setup: 51`;
+          console.value += `setup: 52`;
 
           const maxLength = 26;
           let maxLengthReached = false;
@@ -86,12 +86,14 @@
               return;
             }
 
+            const selection = editor.selection.getSel();
+            if (!selection || selection.isCollapsed) {
+              return;
+            }
+
             const content = editor.getContent();
             console.value += `input: ${content.length}`;
-
-            const selection = editor.selection.getSel();
-
-            if (selection && selection.isCollapsed) {
+            if (content.length >= maxLength) {
               const range = editor.selection.getRng();
               const container = range.startContainer;
               range.setStart(container, container.length - 1);
