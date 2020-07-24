@@ -36,7 +36,7 @@
       <div class="editor-toolbar"></div>
       <div class="editor-body">Existing content</div>
     </div>
-    <textarea id="console" class="rich-text-console">setup34</textarea>
+    <textarea id="console" class="rich-text-console">setup35</textarea>
   </section>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.3.2/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
@@ -68,8 +68,8 @@
             const code = event.code || event.key;
             maxLengthReached = false;
 
-            const content = editor.getBody().innerHTML;
-            console.value = `code: ${code}\ncontent: ${content}`;
+            const content = editor.getContent();
+            console.value = `length: ${content.length}`;
 
             if (code === "Delete" || code === "Backspace") {
               return;
