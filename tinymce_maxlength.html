@@ -61,11 +61,11 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += 'setup13\n';
+          console.value += 'setup14\n';
           editor.on('keydown', function(event) {
             console.value += `keydown: ${event.key}, ${event.keyCode}\n`;
-            event.preventDefault();
-            return false;
+            //event.preventDefault();
+            //return false;
           });
           editor.on('input', function(event) {
             try {
@@ -79,9 +79,10 @@
               range.deleteContents();
               selection.removeRange(range);
 
-              range.setStart(container, container.length);
-              range.setEnd(container, container.length);
-              selection.addRange(range);
+              const newRange = editor.selection.getRng();
+              newRange.setStart(container, container.length);
+              newRange.setEnd(container, container.length);
+              selection.addRange(newRange);
             } catch(error) {
               console.value += `error: ${error}n`;
             }
