@@ -36,7 +36,7 @@
       <div class="editor-toolbar"></div>
       <div class="editor-body">Existing content</div>
     </div>
-    <textarea id="console" class="rich-text-console">setup26</textarea>
+    <textarea id="console" class="rich-text-console">setup27</textarea>
   </section>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.3.2/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
@@ -66,14 +66,16 @@
           editor.on('keydown', function(event) {
             console.value = `keydown: ${event.code}, ${event.key}`;
             const code = event.code || event.key;
+            maxLengthReached = false;
+
             if (code === "Delete" || code === "Backspace") {
               maxLengthReached = false;
-            } else if (editor.getContent().length > maxLength) {
+            }
+
+            if (editor.getContent().length > maxLength) {
               maxLengthReached = true;
               event.preventDefault();
               return false;
-            } else {
-              maxLengthReached = false;
             }
           });
           editor.on('input', function(event) {
