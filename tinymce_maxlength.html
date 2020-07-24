@@ -61,9 +61,9 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += elements.length + '\n';
+          console.value += 'setup2\n';
           editor.on('keydown', function(event) {
-            console.value += 'keydown\n';
+            console.value += `keydown: ${event.keyCode}\n;
             event.preventDefault();
             return false;
           });
@@ -72,7 +72,7 @@
               console.value += 'input\n';
               const selection = window.getSelection();
               const anchorNode = selection.anchorNode;
-              console.value += anchorNode.textContent + '\n';
+              console.value +=  'input: ${event.target.value}\n';
               const range = document.createRange();
               range.setStart(anchorNode, anchorNode.length - 1);
               range.setEnd(anchorNode, anchorNode.length);
