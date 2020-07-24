@@ -61,7 +61,7 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += 'setup1\n';
+          console.value += elements.length + '\n';
           editor.on('keydown', function(event) {
             console.value += 'keydown\n';
             event.preventDefault();
