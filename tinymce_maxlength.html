@@ -56,7 +56,6 @@
         setup: (editor) => {
           editor.on('keydown', function(event) {
             event.preventDefault();
-            event.stopPropagation();
             return false;
           });
           editor.on('input', function(event) {
