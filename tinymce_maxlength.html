@@ -36,7 +36,7 @@
       <div class="editor-toolbar"></div>
       <div class="editor-body">Existing content</div>
     </div>
-    <textarea id="console" class="rich-text-console">setup29</textarea>
+    <textarea id="console" class="rich-text-console">setup30</textarea>
   </section>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.3.2/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
@@ -72,10 +72,12 @@
               return
             }
 
-            if (editor.getContent().length >= maxLength) {
+            const content = editor.getContent();
+            console.value = `content: ${content}content`;
+            if (content.length >= maxLength) {
               maxLengthReached = true;
-              event.preventDefault();
-              return false;
+              //event.preventDefault();
+              //return false;
             }
           });
           editor.on('input', function(event) {
