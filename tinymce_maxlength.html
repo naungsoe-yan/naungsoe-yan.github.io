@@ -69,15 +69,19 @@
             return false;
           });
           editor.on('input', function(event) {
-            console.value += 'input\n';
-            const selection = window.getSelection();
-            const anchorNode = selection.anchorNode;
-            console.value += anchorNode.textContent + '\n';
-            const range = document.createRange();
-            range.setStart(anchorNode, anchorNode.length - 1);
-            range.setEnd(anchorNode, anchorNode.length);
-            range.deleteContents();
-            return false;
+            try {
+              console.value += 'input\n';
+              const selection = window.getSelection();
+              const anchorNode = selection.anchorNode;
+              console.value += anchorNode.textContent + '\n';
+              const range = document.createRange();
+              range.setStart(anchorNode, anchorNode.length - 1);
+              range.setEnd(anchorNode, anchorNode.length);
+              range.deleteContents();
+              return false;
+            } catch(e) {
+              console.value += e + '\n';
+            }
           });
 
           //alignleft aligncenter alignright alignjustify
