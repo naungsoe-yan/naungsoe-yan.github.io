@@ -61,7 +61,7 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += `setup: 57`;
+          console.value += `setup: 58`;
 
           const maxLength = 26;
           let maxLengthReached = false;
@@ -78,7 +78,6 @@
             if (content.length >= maxLength) {
               maxLengthReached = true;
               event.preventDefault();
-              event.stopPropagation();
               return false;
             }
           });
@@ -100,10 +99,12 @@
               range.setStart(container, container.length - 1);
               range.setEnd(container, container.length);
               range.deleteContents();
+              selection.removeRange(range);
 
-              event.preventDefault();
-              event.stopPropagation();
-              return false;
+              setTimeout(function() {
+                editor.selection.select(container, true);
+                editor.selection.collapse(false);
+              });
             }
           });
 
