@@ -62,7 +62,7 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += `setup: 70`;
+          console.value += `setup: 72`;
 
           const maxLength = 26;
           let maxLengthReached = false;
@@ -83,8 +83,8 @@
             console.value += `\nkeydown: ${content.length}, `;
             if (content.length >= maxLength) {
               maxLengthReached = true;
-              event.preventDefault();
-              return false;
+              //event.preventDefault();
+              //return false;
             }
           });
           editor.on('input', function(event) {
@@ -103,7 +103,8 @@
               const exceedLength = content.length - maxLength;
               const range = editor.selection.getRng();
               const container = range.startContainer;
-              const startOffset = container.length - exceedLength;
+              const startOffset = (container.length > exceedLength)
+                ? container.length - exceedLength : 0;
               const endOffset = container.length;
               range.setStart(container, startOffset);
               range.setEnd(container, endOffset);
