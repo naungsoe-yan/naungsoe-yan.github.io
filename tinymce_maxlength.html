@@ -62,11 +62,10 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += `setup: 65`;
+          console.value += `setup: 66`;
 
           const maxLength = 26;
           let maxLengthReached = false;
-          let anchorNode = null;
           editor.on('keydown', function(event) {
             const code = event.code || event.key;
             maxLengthReached = false;
@@ -80,14 +79,12 @@
               return;
             }
 
-            anchorNode = selection.anchorNode;
-
             const content = editor.getContent();
             console.value += `\nkeydown: ${content.length}, `;
             if (content.length >= maxLength) {
               maxLengthReached = true;
-              event.preventDefault();
-              return false;
+              //event.preventDefault();
+              //return false;
             }
           });
           editor.on('input', function(event) {
@@ -103,12 +100,21 @@
             const content = editor.getContent();
             console.value += `input: ${content.length}`;
             if (content.length > maxLength) {
-              const range = editor.selection.getRng();
+              /*const range = editor.selection.getRng();
               const container = range.startContainer;
               range.setStart(container, container.length - 1);
               range.setEnd(container, container.length);
               range.deleteContents();
-              selection.removeRange(range);
+              selection.removeRange(range);*/
+
+              const anchorNode = selection.anchorNode;
+              const nodeValue = anchorNode.nodeValue;
+              const indexEnd = nodeValue.length - 1;
+              anchorNode.nodeValue = nodeValue.substring(0, indexEnd);
+
+              const range = editor.selection.getRng();
+              range.setStart(anchorNode, anchorNode.length);
+              range.setEnd(anchorNode, anchorNode.length);
             }
           });
 
