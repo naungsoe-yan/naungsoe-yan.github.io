@@ -61,10 +61,11 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += `setup: 62`;
+          console.value += `setup: 64`;
 
           const maxLength = 26;
           let maxLengthReached = false;
+          let anchorNode = null;
           editor.on('keydown', function(event) {
             const code = event.code || event.key;
             maxLengthReached = false;
@@ -73,13 +74,19 @@
               return;
             }
 
+            const selection = editor.selection.getSel();
+            if (!selection.isCollapsed) {
+              return;
+            }
+
+            anchorNode = selection.anchorNode;
+
             const content = editor.getContent();
             console.value += `\nkeydown: ${content.length}, `;
             if (content.length >= maxLength) {
               maxLengthReached = true;
-              event.preventDefault();
-              event.stopPropagation();
-              return false;
+              //event.preventDefault();
+              //return false;
             }
           });
           editor.on('input', function(event) {
@@ -100,16 +107,10 @@
               range.setStart(container, container.length - 1);
               range.setEnd(container, container.length);
               range.deleteContents();
-              selection.removeRange(range);
 
-              setTimeout(function() {
-                editor.selection.select(editor.getBody(), true);
-                editor.selection.collapse(false);
-              }, 1000);
+              range.setStart(anchorNode, anchorNode.length);
+              range.setEnd(anchorNode, anchorNode.length);
 
-              event.preventDefault();
-              event.stopPropagation();
-              return false;
             }
           });
 
