@@ -101,10 +101,10 @@
             console.value += `input: ${content.length}`;
             if (content.length > maxLength) {
               const exceedLength = content.length - maxLength;
-              const startOffset = container.length - exceedLength;
-              const endOffset = container.length;
               const range = editor.selection.getRng();
               const container = range.startContainer;
+              const startOffset = container.length - exceedLength;
+              const endOffset = container.length;
               range.setStart(container, startOffset);
               range.setEnd(container, endOffset);
               range.deleteContents();
