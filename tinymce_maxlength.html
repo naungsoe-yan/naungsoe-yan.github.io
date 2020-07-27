@@ -61,7 +61,7 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += `setup: 59`;
+          console.value += `setup: 60`;
 
           const maxLength = 26;
           let maxLengthReached = false;
@@ -78,6 +78,7 @@
             if (content.length >= maxLength) {
               maxLengthReached = true;
               event.preventDefault();
+              event.stopPropagation();
               return false;
             }
           });
@@ -101,9 +102,13 @@
               range.deleteContents();
 
               setTimeout(function() {
-                editor.selection.select(container, true);
+                editor.selection.select(editor.getBody(), true);
                 editor.selection.collapse(false);
               });
+
+              event.preventDefault();
+              event.stopPropagation();
+              return false;
             }
           });
 
