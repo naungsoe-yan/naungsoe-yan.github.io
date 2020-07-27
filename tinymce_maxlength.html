@@ -78,6 +78,7 @@
             if (content.length >= maxLength) {
               maxLengthReached = true;
               event.preventDefault();
+              event.stopPropagation();
               return false;
             }
           });
@@ -94,12 +95,14 @@
             const content = editor.getContent();
             console.value += `input: ${content.length}`;
             if (content.length > maxLength) {
+              event.preventDefault();
+              event.stopPropagation();
+
               const range = editor.selection.getRng();
               const container = range.startContainer;
               range.setStart(container, container.length - 1);
               range.setEnd(container, container.length);
               range.deleteContents();
-              selection.removeRange(range);
             }
           });
 
