@@ -62,7 +62,7 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += `setup: 72`;
+          console.value += `setup: 73`;
 
           const maxLength = 26;
           let maxLengthReached = false;
@@ -109,7 +109,7 @@
               range.setStart(container, startOffset);
               range.setEnd(container, endOffset);
               range.deleteContents();
-              selection.removeRange(range);
+              //selection.removeRange(range);
             }
           });
 
