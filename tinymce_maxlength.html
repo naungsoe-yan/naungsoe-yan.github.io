@@ -61,7 +61,7 @@
         placeholder: 'Enter your answer here...',
         setup: (editor) => {
           const console = document.querySelector('#console');
-          console.value += `setup: 61`;
+          console.value += `setup: 62`;
 
           const maxLength = 26;
           let maxLengthReached = false;
@@ -105,7 +105,7 @@
               setTimeout(function() {
                 editor.selection.select(editor.getBody(), true);
                 editor.selection.collapse(false);
-              });
+              }, 1000);
 
               event.preventDefault();
               event.stopPropagation();
