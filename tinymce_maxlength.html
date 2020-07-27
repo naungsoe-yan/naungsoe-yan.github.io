@@ -83,8 +83,8 @@
             console.value += `\nkeydown: ${content.length}, `;
             if (content.length >= maxLength) {
               maxLengthReached = true;
-              //event.preventDefault();
-              //return false;
+              event.preventDefault();
+              return false;
             }
           });
           editor.on('input', function(event) {
