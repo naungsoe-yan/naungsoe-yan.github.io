@@ -122,10 +122,10 @@
         },
         placeholder: 'Enter your answer here...',
         paste_preprocess: (...args) => {
-          console.log("pre-process", args);
+          console.log("pre-process", ...args);
         },
         paste_postprocess: (...args) => {
-          console.log("post-process", args);
+          console.log("post-process", ...args);
         },
         setup: (editor) => {
           editor.on("input", (event) => {
