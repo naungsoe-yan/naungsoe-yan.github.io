@@ -123,8 +123,8 @@
         },
         placeholder: 'Enter your answer here...',
         paste_preprocess: (plugin, args) => {
-          if (args.content.length > 10) {
-            args.content = args.content.substring(0, 10);
+          if (args.content.length > 100) {
+            args.content = args.content.substring(0, 100);
           }
         },
         paste_postprocess: (plugin, args) => {
