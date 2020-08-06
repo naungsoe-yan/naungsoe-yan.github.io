@@ -111,22 +111,32 @@
         fixed_toolbar_container: `#${editorId} .editor-toolbar`,
         contextmenu: false,
         contextmenu_never_use_native: false,
-        plugins: 'print preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime lists advlist wordcount imagetools textpattern noneditable help charmap emoticons',
+        plugins: 'paste print preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime lists advlist wordcount imagetools textpattern noneditable help charmap emoticons',
         menubar: false,
         inline: true,
         toolbar_mode: 'sliding',
         toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | alignment numlist bullist | fontselect formatselect | attachment recording link media table drawing | maths science | website comment tooltip',
         mobile: {
            toolbar_mode: 'sliding',
-           plugins: 'print preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime lists advlist wordcount imagetools textpattern noneditable help charmap emoticons',
+           plugins: 'paste print preview importcss searchreplace autolink autosave save directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime lists advlist wordcount imagetools textpattern noneditable help charmap emoticons',
            toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | alignment numlist bullist | fontselect formatselect | attachment recording link media table drawing | maths science | website comment tooltip'
         },
-        smart_paste: false,
         placeholder: 'Enter your answer here...',
-        setup: (editor) => {
-          editor.on("paste", (event) => {
-            console.log(event);
+        paste_preprocess: (...args) => {
+          const output = document.querySelector("#output");
+          args.forEach(item => {
+            output.value += item ? item.content : "empty";
+            output.value += "\n";
           });
+        },
+        paste_postprocess: (...args) => {
+          const output = document.querySelector("#output");
+          args.forEach(item => {
+            output.value += item ? item.node.outerHTML : "empty";
+            output.value += "\n";
+          });
+        },
+        setup: (editor) => {
           editor.on("input", (event) => {
             const body = editor.getBody();
             const hasTextContent = event.target.textContent.length > 0;
