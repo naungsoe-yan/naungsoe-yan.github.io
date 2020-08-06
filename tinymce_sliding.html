@@ -123,13 +123,10 @@
         },
         smart_paste: false,
         placeholder: 'Enter your answer here...',
-        paste_preprocess: (plugin, args) => {
-
-        },
-        paste_postprocess: (plugin, args) => {
-
-        },
         setup: (editor) => {
+          editor.on("paste", (event) => {
+            console.log(event);
+          });
           editor.on("input", (event) => {
             const body = editor.getBody();
             const hasTextContent = event.target.textContent.length > 0;
