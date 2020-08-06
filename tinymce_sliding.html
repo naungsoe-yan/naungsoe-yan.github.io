@@ -123,19 +123,11 @@
         },
         smart_paste: false,
         placeholder: 'Enter your answer here...',
-        paste_preprocess: (...args) => {
-          const output = document.querySelector("#output");
-          args.forEach(item => {
-            output.value += item ? item.content : "empty";
-            output.value += "\n";
-          });
+        paste_preprocess: (plugin, args) => {
+          if (args && args.content) alert(args.content);
         },
-        paste_postprocess: (...args) => {
-          const output = document.querySelector("#output");
-          args.forEach(item => {
-            output.value += item ? item.node.outerHTML : "empty";
-            output.value += "\n";
-          });
+        paste_postprocess: (plugin, args) => {
+          if (args && args.node) alert(args.node.outerHTML);
         },
         setup: (editor) => {
           editor.on("input", (event) => {
