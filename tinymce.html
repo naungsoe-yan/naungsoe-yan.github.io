@@ -52,12 +52,28 @@
       plugins: ['autolink noneditable paste textcolor advlist lists table image link media'],
       menubar: false,
       toolbar_mode: 'scrolling',
-      toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | fontselect formatselect | numlist bullist | tiny_mce_wiris_formulaEditor tiny_mce_wiris_formulaEditorChemistry',
+      toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | fontselect formatselect | numlist bullist',
       placeholder: 'Enter your answer here...',
-      plugins: ['tiny_mce_wiris'],
-      external_plugins: {
-        tiny_mce_wiris: 'https://naungsoe-yan.github.io/tiny_mce_wiris/plugin.js'
-      }
+      paste_preprocess: function(plugin, args) {
+        const container = document.createElement("div");
+        container.innerHTML = args.content;
+
+        const images = container.querySelectorAll("img");
+        images.forEach((image) => {
+          const media = document.createElement("div");
+          media.setAttribute("data-type", "IMAGE");
+          media.setAttribute("data-src", image.getAttribute("src"));
+          media.setAttribute("data-alt", image.getAttribute("alt"));
+          media.classList.add("sls-media");
+          container.replaceChild(media, image);
+        });
+        args.content = container.innerHTML;
+      },
+      setup: function(editor) {
+        editor.on("change", function() {
+          alert("changed");
+        });
+      },
     });
   </script>
 </body>
