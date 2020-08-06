@@ -124,10 +124,10 @@
         smart_paste: false,
         placeholder: 'Enter your answer here...',
         paste_preprocess: (plugin, args) => {
-          if (args && args.content) alert(args.content);
+
         },
         paste_postprocess: (plugin, args) => {
-          if (args && args.node) alert(args.node.outerHTML);
+
         },
         setup: (editor) => {
           editor.on("input", (event) => {
