@@ -122,19 +122,13 @@
            toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | alignment numlist bullist | fontselect formatselect | attachment recording link media table drawing | maths science | website comment tooltip'
         },
         placeholder: 'Enter your answer here...',
-        paste_preprocess: (...args) => {
-          const output = document.querySelector("#output");
-          args.forEach(item => {
-            output.value += item ? item.content : "empty";
-            output.value += "\n";
-          });
+        paste_preprocess: (plugin, args) => {
+          if (args.content.length > 10) {
+            args.content = args.content.substring(0, 10);
+          }
         },
-        paste_postprocess: (...args) => {
-          const output = document.querySelector("#output");
-          args.forEach(item => {
-            output.value += item ? item.node.outerHTML : "empty";
-            output.value += "\n";
-          });
+        paste_postprocess: (plugin, args) => {
+
         },
         setup: (editor) => {
           editor.on("input", (event) => {
