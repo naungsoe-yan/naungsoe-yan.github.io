@@ -132,7 +132,7 @@
         paste_postprocess: (...args) => {
           const output = document.querySelector("#output");
           args.forEach(item => {
-            output.value += item ? item.content : "empty";
+            output.value += item ? item.node.outerHTML : "empty";
             output.value += "\n";
           });
         },
