@@ -123,12 +123,12 @@
         },
         placeholder: 'Enter your answer here...',
         paste_preprocess: (plugin, args) => {
-          if (args.content.length > 100) {
-            args.content = args.content.substring(0, 100);
-          }
+          const output = document.querySelector('#output');
+          output.value += args.content + '\n';
         },
         paste_postprocess: (plugin, args) => {
-
+          const output = document.querySelector('#output');
+          output.value += args.node.outerHTML + '\n';
         },
         setup: (editor) => {
           editor.on("input", (event) => {
