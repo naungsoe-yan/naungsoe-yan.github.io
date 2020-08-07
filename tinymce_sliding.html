@@ -121,11 +121,21 @@
            toolbar: 'undo redo | bold italic underline strikethrough | forecolor backcolor | alignment numlist bullist | fontselect formatselect | attachment recording link media table drawing | maths science | website comment tooltip'
         },
         placeholder: 'Enter your answer here...',
+        paste_data_images: false,
+        paste_enable_default_filters: true,
         paste_preprocess: (plugin, args) => {
 
         },
         paste_postprocess: (plugin, args) => {
-          alert(args.node);
+          const images = args.node.querySelectorAll("img");
+          images.forEach(image => {
+            const parent = image.parentNode;
+            const src = image.getAttribute("src");
+
+            if (src.startsWith("blob:") || src.startsWith("data:")) {
+              parent.removeChild(image);
+            }
+          });
         },
         setup: (editor) => {
           editor.on("input", (event) => {
